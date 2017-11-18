@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class SystemC
 {
     byte distMethV, step;
+    int getCoinc;
+    boolean getCoin;
     String timeValue;
     String[] listLineMeth = {"line", "line by line", "lbl", "l"};
     String[] listColumnMeth = {"column", "col", "c"};
@@ -15,6 +17,31 @@ public class SystemC
         System.out.println("Welcome to 'Matrixes!'.");
         System.out.println("To download the latest version, please visit http://github.com/DrM4D/J2_mat");
         System.out.println("To start the programm, enter '/start'. For help enter the '/help'.");
+    }
+
+    boolean getConincidence()
+    {
+        getCoin = false;
+
+        for (byte x = 0; x < listLineMeth.length - 1; x++)
+        {
+            if (timeValue.equalsIgnoreCase(listLineMeth[x]))
+            {
+                getCoinc = x;
+                getCoin = true;
+            }
+        }
+
+        for (byte x = 0; x < listColumnMeth.length - 1; x++)
+        {
+            if (timeValue.equalsIgnoreCase(listColumnMeth[x]))
+            {
+                getCoinc = -1*x;
+                getCoin = true;
+            }
+        }
+
+        return getCoin;
     }
 
     void err(byte err)
@@ -53,20 +80,13 @@ public class SystemC
 
         switch (step)
         {
-            case 0:
-
-                break;
+            case 0: break;
             case 1:
-                String distMeth = in.nextLine();
-
-                if (distMeth.equalsIgnoreCase(listLineMeth[1]) || distMeth.equalsIgnoreCase("")) distMethV = 1;
-                else if (distMeth.equalsIgnoreCase(listColumnMeth[1])) distMethV = 2;
-                else
+                if (getConincidence())
                 {
-                    System.out.print("");
+
                 }
                 break;
-
-        }
+            }
     }
 }
